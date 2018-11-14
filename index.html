@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Things</title>
+    <link rel="icon" type=”image/x-icon” href="icono.ico"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">
+
+
+</head>
+<body>
+    <div class="app" id="app">
+            <h4 style="margin-top: 100px; margin-bottom: 40px;">{{titulo}}</h4>
+
+            <div class="row">
+                <div style="float: left;" class="input-field col s12">
+                    <input placeholder="Things to do" id="txtnuevatarea" type="text" class="validate" v-model="nuevatarea" v-on:keyup.enter="agregartarea">
+                </div>
+                <a style="margin-top: 30px; float: right;" class="btn-floating btn-large waves-effect waves-light red btnapp" @click="agregartarea"><i class="material-icons">add</i></a>
+               
+            </div>
+            
+            <div class="boxtareas">
+                <div v-for="(item, index) of tareas" >
+
+                    <div :class="[ 'cardtarea', item.estado ? 'tareahecha' : 'tarea']">
+                        
+                        
+
+                        <div class="buttoncont">
+                            <button  class="btnaccion white" @click="editartarea(index)">
+                                    <i class="material-icons icotareas">done</i>
+                            </button>
+
+                            <button  class="btnaccion white" @click="eliminartarea(index)">
+                                    <i class="material-icons icotareas">clear</i>
+                            </button>
+                            
+                            <button class="btnaccion white"  @click="tareafavorita(index)">
+                                    <i :class="['material-icons', item.favorita ? 'icofavorite' : 'icotareas']" >favorite</i>
+                            </button>
+                        </div>
+
+                        <h6 class="titulotarea">
+                                {{item.nombre}}
+                        </h6>
+                    
+                    </div>              
+                </div>
+            </div>
+            
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
